@@ -1,68 +1,316 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
-  margin: 0;
+  background: rgb(238, 235, 235);
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.clock .hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  z-index: 10;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.hourHand {
+  position: absolute;
+  top: 37%;
+  left: 35%;
+  height: 20px;
+  z-index: 1;
 }
-button:hover {
-  border-color: #646cff;
+.minutesHand {
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  z-index: 2;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.circle {
+  position: absolute;
+  top: 46%;
+  left: 48%;
+  z-index: 3;
+}
+.clock {
+  width: 300px;
+  height: 300px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  /* border: 1px solid white; */
+  box-shadow: -8px 8px 15px rgba(225, 225, 225, 0.05),
+    20px 20px 20px rgba(0, 0, 0, 0.2),
+    inset -8px -8px 15px rgba(225, 225, 225, 0.05),
+    inset 20px 20px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.clock .number {
+  --roation: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform: rotate(var(--roation));
+
+  font-size: 1.5rem;
+  padding: 18px;
+  transform: rotate(var(--roation)) translateY(20px);
+}
+
+.number::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 15px;
+  background-color: black;
+}
+.child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 15px;
+  background-color: lightgray;
+}
+
+.clock .number1 {
+  --roation: 30deg;
+}
+.clock .number1_1 {
+  --roation: 36deg;
+}
+.clock .number1_2 {
+  --roation: 42deg;
+}
+.clock .number1_3 {
+  --roation: 48deg;
+}
+.clock .number1_4 {
+  --roation: 54deg;
+}
+.clock .number2 {
+  --roation: 60deg;
+}
+.clock .number2_1 {
+  --roation: 66deg;
+}
+.clock .number2_2 {
+  --roation: 72deg;
+}
+.clock .number2_3 {
+  --roation: 78deg;
+}
+.clock .number2_4 {
+  --roation: 84deg;
+}
+.clock .number3 {
+  --roation: 90deg;
+}
+.clock .number3_1 {
+  --roation: 96deg;
+}
+.clock .number3_2 {
+  --roation: 102deg;
+}
+.clock .number3_3 {
+  --roation: 108deg;
+}
+.clock .number3_4 {
+  --roation: 114deg;
+}
+.clock .number4 {
+  --roation: 120deg;
+}
+.clock .number4_1 {
+  --roation: 126deg;
+}
+.clock .number4_2 {
+  --roation: 132deg;
+}
+.clock .number4_3 {
+  --roation: 138deg;
+}
+.clock .number4_4 {
+  --roation: 144deg;
+}
+.clock .number5 {
+  --roation: 150deg;
+}
+.clock .number5_1 {
+  --roation: 156deg;
+}
+.clock .number5_2 {
+  --roation: 162deg;
+}
+.clock .number5_3 {
+  --roation: 168deg;
+}
+.clock .number5_4 {
+  --roation: 174deg;
+}
+.clock .number6 {
+  --roation: 180deg;
+}
+.clock .number6_1 {
+  --roation: 186deg;
+}
+.clock .number6_2 {
+  --roation: 192deg;
+}
+.clock .number6_3 {
+  --roation: 198deg;
+}
+.clock .number6_4 {
+  --roation: 204deg;
+}
+.clock .number7 {
+  --roation: 210deg;
+}
+.clock .number7_1 {
+  --roation: 216deg;
+}
+.clock .number7_2 {
+  --roation: 222deg;
+}
+.clock .number7_3 {
+  --roation: 228deg;
+}
+.clock .number7_4 {
+  --roation: 234deg;
+}
+.clock .number8 {
+  --roation: 240deg;
+}
+.clock .number8_1 {
+  --roation: 246deg;
+}
+.clock .number8_2 {
+  --roation: 252deg;
+}
+.clock .number8_3 {
+  --roation: 258deg;
+}
+.clock .number8_4 {
+  --roation: 264deg;
+}
+.clock .number9 {
+  --roation: 270deg;
+}
+.clock .number9_1 {
+  --roation: 276deg;
+}
+.clock .number9_2 {
+  --roation: 282deg;
+}
+.clock .number9_3 {
+  --roation: 288deg;
+}
+.clock .number9_4 {
+  --roation: 294deg;
+}
+.clock .number10 {
+  --roation: 300deg;
+}
+.clock .number10_1 {
+  --roation: 306deg;
+}
+.clock .number10_2 {
+  --roation: 312deg;
+}
+.clock .number10_3 {
+  --roation: 318deg;
+}
+.clock .number10_4 {
+  --roation: 324deg;
+}
+.clock .number11 {
+  --roation: 330deg;
+}
+.clock .number11_1 {
+  --roation: 336deg;
+}
+.clock .number11_2 {
+  --roation: 342deg;
+}
+.clock .number11_3 {
+  --roation: 348deg;
+}
+.clock .number11_4 {
+  --roation: 354deg;
+}
+.clock .number12_1 {
+  --roation: 6deg;
+}
+.clock .number12_2 {
+  --roation: 12deg;
+}
+.clock .number12_3 {
+  --roation: 18deg;
+}
+.clock .number12_4 {
+  --roation: 24deg;
+}
+
+.number1 div {
+  transform: rotate(-30deg);
+}
+
+.number2 div {
+  transform: rotate(-60deg);
+}
+.number3 div {
+  transform: rotate(-90deg);
+}
+.number4 div {
+  transform: rotate(-120deg);
+}
+.number5 div {
+  transform: rotate(-150deg);
+}
+.number6 div {
+  transform: rotate(-180deg);
+}
+.number7 div {
+  transform: rotate(-210deg);
+}
+.number8 div {
+  transform: rotate(-240deg);
+}
+.number9 div {
+  transform: rotate(-270deg);
+}
+.number10 div {
+  transform: rotate(-300deg);
+}
+.number11 div {
+  transform: rotate(-330deg);
+}
+
+.clock .hand {
+  /* --roation:0; */
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+
+  border: 1px solid white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: black;
+  transform-origin: bottom;
+  /* transform: translate(-50%) rotate(calc(var(--roation)* 1deg)); */
+  z-index: 10;
 }
