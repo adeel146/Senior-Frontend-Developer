@@ -7,7 +7,7 @@ function Clock({ hourRatio, minuteRatio, secondRatio }) {
   const hourRotation = (hourRatio % 12) * 30; // 12 hours, 360 degrees total, 30 degrees per hour
   const minuteRotation = (minuteRatio % 60) * 6; // 60 minutes, 360 degrees total, 6 degrees per minute
 
-  // Create an array of numbers from 1 to 12
+  // Created an array of numbers from 1 to 12
   const numbers = Array.from({ length: 12 }, (_, index) => index + 1);
 
   return (
