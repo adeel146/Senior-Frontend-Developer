@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import "./index.css";
+import Clock from "./Clock";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [secondRatio, setSecondRatio] = useState(0);
+  const [minuteRatio, setMinuteRatio] = useState(0);
+  const [hourRatio, setHourRatio] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setClock();
+    }, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array ensures that the effect runs only once on mount
+
+  const setClock = () => {
+    const currentDate = new Date();
+    const newSecondRatio = currentDate.getSeconds() / 60;
+    const newMinuteRatio = (newSecondRatio + currentDate.getMinutes()) / 60;
+    const newHourRatio = (newMinuteRatio + currentDate.getHours()) / 12;
+
+    setSecondRatio(newSecondRatio);
+    setMinuteRatio(newMinuteRatio);
+    setHourRatio(newHourRatio);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Clock
+      secondRatio={secondRatio}
+      minuteRatio={minuteRatio}
+      hourRatio={hourRatio}
+    />
+  );
+};
 
-export default App
+export default App;
